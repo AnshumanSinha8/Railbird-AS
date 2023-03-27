@@ -48,23 +48,7 @@
   for (let i = 1; i <= 100; i++) {
     contracts[`Contract #${i}`] = [
     `$${Math.floor(Math.random() * 201)}`,
-    Math.floor(Math.random() * 10001)
-  ]
-  }
-
-  let assets = [];
-  let watchlist = [];
-
-  function handlePurchase(event) {
-    const { name, values } = event.detail;
-    assets.push({ name, values });
-    delete contracts[name];
-  }
-
-  function handleWatchlist(event) {
-    const { name, values } = event.detail;
-    watchlist.push({ name, values });
-    delete contracts[name];
+    Math.floor(Math.random() * 10001)]
   }
 </script>
 
@@ -74,10 +58,7 @@
   <AvailableContract 
     key={key} 
     name={key} 
-    values={values} 
-    on:purchase={handlePurchase} 
-    on:watchlist={handleWatchlist}
-    onClick={() => console.log('clicked!')}/>
+    values={values}/>
   {/each}
 </div>
 

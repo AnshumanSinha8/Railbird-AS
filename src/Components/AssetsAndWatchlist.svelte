@@ -3,19 +3,19 @@
   import Watchlist from "./Watchlist.svelte";
 
   let currentTime = new Date();
-    function updateTime() {
-        currentTime = new Date();
+  function updateTime() {
+    currentTime = new Date();
   }
 
   let assetsView = true;
-  let assetsContent = "Content for the assets view";
-  let watchlistContent = "Content for the watchlist view";
+  let topContainerHeight = 41;
 
   function toggleView() {
     assetsView = !assetsView;
   }
   setInterval(updateTime, 1000);
 </script>
+
 <div class="assets-and-watchlist">
   <div class="toggle-container">
     <button on:click={toggleView}>Switch View</button>
@@ -25,13 +25,13 @@
       <h2 class="Assets-title">Your Assets</h2>
       <h3 class="market-timer-information"> {currentTime.toLocaleTimeString()}</h3>
     </div>
-    <Assets content={assetsContent} />
+    <Assets height={400 - topContainerHeight} />
   {:else}
     <div class="watchlist-title-container">
       <h2 class="Watchlist-title">Your Watchlist</h2>
       <h3 class="market-timer-information"> {currentTime.toLocaleTimeString()}</h3>
     </div>
-    <Watchlist content={watchlistContent} />
+    <Watchlist height={400 - topContainerHeight}/>
   {/if}
 </div>
 
@@ -84,11 +84,10 @@
     text-align: center;
   }
 
-
   .Watchlist-title,
   .Assets-title {
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
     width: 100%;
     text-align: center;
   }
